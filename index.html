@@ -136,18 +136,18 @@
             z-index: 5;
         }
 
-        /* 仿图中的复古手帐盖章效果（双层虚线复古圆框） */
+        /* 盖章完成后的样式 */
         .day-cell.stamp-stamped {
             background: #fffdf9;
-            border: 2px dashed #8b5a2b;
-            box-shadow: inset 0 0 0 3px #fffdf9, inset 0 0 0 4px rgba(139, 90, 43, 0.3), 0 4px 10px rgba(92,64,51,0.1);
+            border: 2px dashed #b5651d;
+            box-shadow: 0 4px 10px rgba(92,64,51,0.08);
             border-radius: 50%;
         }
 
         /* 印章中心内容样式 */
         .stamp-content {
-            width: 80%;
-            height: 80%;
+            width: 85%;
+            height: 85%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -155,8 +155,8 @@
             z-index: 2;
         }
         .stamp-content img {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             object-fit: contain;
         }
         .stamp-subtext {
@@ -164,7 +164,7 @@
             color: #7f6354;
             transform: scale(0.85);
             white-space: nowrap;
-            margin-top: -2px;
+            margin-top: -3px;
         }
 
         /* 底部统计面板 */
@@ -269,8 +269,8 @@
             transition: 0.2s;
         }
         .option-btn img {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             object-fit: contain;
         }
         .option-btn:hover {
@@ -312,7 +312,7 @@
 
 <div class="container">
     <div class="header">
-        <h1>🐾 运动打卡盖章 ♥</h1>
+        <h1>「人类丰荣计划」</h1>
         <p>/ 备战奥运</p>
     </div>
 
@@ -381,21 +381,17 @@
 </div>
 
 <script>
-    // 在这里配置你的猫咪印章图片路径 (可以把图片和 html 放在同级目录下，写对应的文件名)
     const sportTypes = {
         'run': { name: '跑步', icon: 'run.png', unit: '公里', type: 'distance' },
         'dance': { name: '跳舞', icon: 'dance.png', unit: '分钟', type: 'duration' },
         'badminton': { name: '羽毛球', icon: 'badminton.png', unit: '分钟', type: 'duration' },
-        'fitness': { name: '健身', icon: 'fitness.png', unit: '分钟', type: 'duration' },
+        'workout': { name: '健身', icon: 'workout.png', unit: '分钟', type: 'duration' },
         'yoga': { name: '瑜伽', icon: 'yoga.png', unit: '分钟', type: 'duration' },
-        'walk': { name: '散步', icon: 'walk.png', unit: '公里', type: 'distance' },
         'bike': { name: '骑车', icon: 'bike.png', unit: '公里', type: 'distance' },
-        'swim': { name: '游泳', icon: 'swim.png', unit: '分钟', type: 'duration' },
-        'stretch': { name: '拉伸', icon: 'stretch.png', unit: '分钟', type: 'duration' },
-        'rest': { name: '休息', icon: 'rest.png', unit: '分钟', type: 'duration' }
+        'swim': { name: '游泳', icon: 'swim.png', unit: '分钟', type: 'duration' }
     };
 
-    let currentDate = new Date(2026, 6, 1); 
+    let currentDate = new Date(); 
     let checkIns = JSON.parse(localStorage.getItem('sport_checkins')) || {}; 
     let monthlyGoal = localStorage.getItem('monthly_run_goal') ? parseFloat(localStorage.getItem('monthly_run_goal')) : 100;
     
@@ -542,7 +538,7 @@
     }
 
     function saveGoal() {
-        const val = document.getElementById('goalInput'].value;
+        const val = document.getElementById('goalInput').value;
         if (val !== '' && !isNaN(val)) {
             monthlyGoal = parseFloat(val);
             localStorage.setItem('monthly_run_goal', monthlyGoal);
@@ -580,7 +576,7 @@
             <div class="stat-item"><div class="num">${counts['run'] || 0}</div><div class="label">跑步</div></div>
             <div class="stat-item"><div class="num">${counts['dance'] || 0}</div><div class="label">舞蹈</div></div>
             <div class="stat-item"><div class="num">${counts['badminton'] || 0}</div><div class="label">羽毛球</div></div>
-            <div class="stat-item"><div class="num">${counts['rest'] || 0}</div><div class="label">休息</div></div>
+            <div class="stat-item"><div class="num">${counts['workout'] || 0}</div><div class="label">健身</div></div>
         `;
 
         document.getElementById('goalDisplayText').innerText = `(目标: ${monthlyGoal} 公里)`;
