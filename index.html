@@ -14,6 +14,7 @@
             --border-color: #eae3dc;
             --cell-bg: #faf8f5;
             --accent-color: #c88a59;
+            --stamp-bg: #ffffff; /* 已打卡时的独立底衬颜色，确保深色模式下图案清晰 */
             
             /* ========================================== */
             /* 【数字字体替换位】可在下方引号内修改为你想要的字体 */
@@ -154,10 +155,11 @@
             pointer-events: none;
         }
 
+        /* 已打卡格子：自带独立高亮底衬，确保印章图案绝对清晰 */
         .day-cell.stamp-stamped {
-            background: var(--card-bg);
+            background: var(--stamp-bg);
             border: none;
-            box-shadow: 0 4px 12px rgba(61, 51, 42, 0.08);
+            box-shadow: 0 4px 12px rgba(61, 51, 42, 0.1);
             border-radius: 50%;
             overflow: visible;
         }
@@ -188,7 +190,7 @@
             border-radius: 4px;
             white-space: nowrap;
             z-index: 15;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
         }
 
         .stats-panel {
@@ -403,15 +405,15 @@
     </div>
 </div>
 
-<!-- 右下角悬浮调色盘：每款对应清爽的配色方案 -->
+<!-- 右下角悬浮调色盘：精选 6 款清爽通透、印章完美显现的手帐主题 -->
 <div class="palette-float">
     <span>🎨 主题</span>
-    <div class="color-dot" style="background: #f7f5f0;" onclick="setTheme('#f7f5f0', '#ffffff', '#3d332a', '#8c7d73', '#eae3dc', '#faf8f5', '#c88a59')" title="暖白米色"></div>
-    <div class="color-dot" style="background: #f0f4f1;" onclick="setTheme('#f0f4f1', '#ffffff', '#2d3830', '#738378', '#d5e0d7', '#f6f9f6', '#50725b')" title="森系复古绿"></div>
-    <div class="color-dot" style="background: #fcf4f1;" onclick="setTheme('#fcf4f1', '#ffffff', '#40302b', '#967d75', '#f0ded8', '#fff8f6', '#b86b5e')" title="暖调杏粉色"></div>
-    <div class="color-dot" style="background: #f1f4f7;" onclick="setTheme('#f1f4f7', '#ffffff', '#2c353f', '#758393', '#d9e2ec', '#f6f9fc', '#4a709c')" title="清晨雾霾蓝"></div>
-    <div class="color-dot" style="background: #f4f2ee;" onclick="setTheme('#f4f2ee', '#ffffff', '#38332e', '#8a8279', '#e3ded7', '#faf8f6', '#8c6d53')" title="高级燕麦色"></div>
-    <div class="color-dot" style="background: #2b2b2b;" onclick="setTheme('#2b2b2b', '#363636', '#f2f2f2', '#b3b3b3', '#474747', '#303030', '#d99b6c')" title="暗夜黑咖色"></div>
+    <div class="color-dot" style="background: #f7f5f0;" onclick="setTheme('#f7f5f0', '#ffffff', '#3d332a', '#8c7d73', '#eae3dc', '#faf8f5', '#c88a59', '#ffffff')" title="暖白米色"></div>
+    <div class="color-dot" style="background: #f0f4f1;" onclick="setTheme('#f0f4f1', '#ffffff', '#2d3830', '#738378', '#d5e0d7', '#f6f9f6', '#50725b', '#ffffff')" title="森系复古绿"></div>
+    <div class="color-dot" style="background: #fcf4f1;" onclick="setTheme('#fcf4f1', '#ffffff', '#40302b', '#967d75', '#f0ded8', '#fff8f6', '#b86b5e', '#ffffff')" title="暖调杏粉色"></div>
+    <div class="color-dot" style="background: #f1f4f7;" onclick="setTheme('#f1f4f7', '#ffffff', '#2c353f', '#758393', '#d9e2ec', '#f6f9fc', '#4a709c', '#ffffff')" title="清晨雾霾蓝"></div>
+    <div class="color-dot" style="background: #f4f2ee;" onclick="setTheme('#f4f2ee', '#ffffff', '#38332e', '#8a8279', '#e3ded7', '#faf8f6', '#8c6d53', '#ffffff')" title="高级燕麦色"></div>
+    <div class="color-dot" style="background: #e8e4dc;" onclick="setTheme('#e8e4dc', '#f7f4ee', '#3d3630', '#82786e', '#d4ce3c', '#ede9e2', '#a66a3d', '#ffffff')" title="柔和暖灰"></div>
 </div>
 
 <!-- 选择运动弹窗 -->
@@ -451,13 +453,13 @@
 
 <script>
     const sportTypes = {
-        'run': { name: '跑步', icon: 'run.png?v=6', unit: '公里', type: 'distance' },
-        'dance': { name: '跳舞', icon: 'dance.png?v=6', unit: '分钟', type: 'duration' },
-        'badminton': { name: '羽毛球', icon: 'badminton.png?v=6', unit: '分钟', type: 'duration' },
-        'workout': { name: '健身', icon: 'workout.png?v=6', unit: '分钟', type: 'duration' },
-        'yoga': { name: '瑜伽', icon: 'yoga.png?v=6', unit: '分钟', type: 'duration' },
-        'bike': { name: '骑车', icon: 'bike.png?v=6', unit: '公里', type: 'distance' },
-        'swim': { name: '游泳', icon: 'swim.png?v=6', unit: '分钟', type: 'duration' }
+        'run': { name: '跑步', icon: 'run.png?v=7', unit: '公里', type: 'distance' },
+        'dance': { name: '跳舞', icon: 'dance.png?v=7', unit: '分钟', type: 'duration' },
+        'badminton': { name: '羽毛球', icon: 'badminton.png?v=7', unit: '分钟', type: 'duration' },
+        'workout': { name: '健身', icon: 'workout.png?v=7', unit: '分钟', type: 'duration' },
+        'yoga': { name: '瑜伽', icon: 'yoga.png?v=7', unit: '分钟', type: 'duration' },
+        'bike': { name: '骑车', icon: 'bike.png?v=7', unit: '公里', type: 'distance' },
+        'swim': { name: '游泳', icon: 'swim.png?v=7', unit: '分钟', type: 'duration' }
     };
 
     let currentDate = new Date(); 
@@ -472,12 +474,13 @@
     let tBorder = localStorage.getItem('t_border') || '#eae3dc';
     let tCell = localStorage.getItem('t_cell') || '#faf8f5';
     let tAccent = localStorage.getItem('t_accent') || '#c88a59';
-    applyTheme(tBg, tCard, tMain, tSec, tBorder, tCell, tAccent);
+    let tStampBg = localStorage.getItem('t_stamp_bg') || '#ffffff';
+    applyTheme(tBg, tCard, tMain, tSec, tBorder, tCell, tAccent, tStampBg);
 
     let selectedDayKey = null;
     let tempSelectedSport = null;
 
-    function setTheme(bg, card, main, sec, border, cell, accent) {
+    function setTheme(bg, card, main, sec, border, cell, accent, stampBg) {
         localStorage.setItem('t_bg', bg);
         localStorage.setItem('t_card', card);
         localStorage.setItem('t_main', main);
@@ -485,10 +488,11 @@
         localStorage.setItem('t_border', border);
         localStorage.setItem('t_cell', cell);
         localStorage.setItem('t_accent', accent);
-        applyTheme(bg, card, main, sec, border, cell, accent);
+        localStorage.setItem('t_stamp_bg', stampBg);
+        applyTheme(bg, card, main, sec, border, cell, accent, stampBg);
     }
 
-    function applyTheme(bg, card, main, sec, border, cell, accent) {
+    function applyTheme(bg, card, main, sec, border, cell, accent, stampBg) {
         const root = document.documentElement;
         root.style.setProperty('--bg-color', bg);
         root.style.setProperty('--card-bg', card);
@@ -497,6 +501,7 @@
         root.style.setProperty('--border-color', border);
         root.style.setProperty('--cell-bg', cell);
         root.style.setProperty('--accent-color', accent);
+        root.style.setProperty('--stamp-bg', stampBg);
     }
 
     function initCalendar() {
