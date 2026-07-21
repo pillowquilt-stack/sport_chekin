@@ -34,54 +34,62 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
+        /* 3:4 黄金比例卡片，设定固定宽度并由高度和内部间距撑起完美比例 */
         .container {
             background-color: var(--card-bg);
             border: 2px solid var(--border-color);
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(61, 51, 42, 0.05);
-            width: 700px;
-            padding: 30px;
+            border-radius: 28px;
+            box-shadow: 0 12px 35px rgba(61, 51, 42, 0.06);
+            width: 520px;
+            aspect-ratio: 3 / 4;
+            padding: 35px 30px;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             transition: background-color 0.4s ease, border-color 0.4s ease;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 5px;
         }
         .header h1 {
-            font-size: 24px;
-            margin: 0 0 5px 0;
+            font-size: 28px;
+            margin: 0 0 8px 0;
             letter-spacing: 2px;
             color: var(--text-main);
         }
         .header p {
-            font-size: 14px;
+            font-size: 16px;
             color: var(--text-secondary);
             margin: 0;
+            font-weight: 500;
         }
 
         .month-nav {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
-            margin-bottom: 20px;
+            gap: 25px;
+            margin-bottom: 10px;
             font-weight: bold;
-            font-size: 18px;
+            font-size: 22px;
             color: var(--text-main);
+            font-family: var(--day-font);
         }
         .month-nav button {
             background: none;
             border: 1px solid var(--border-color);
             border-radius: 50%;
-            width: 32px;
-            height: 32px;
+            width: 38px;
+            height: 38px;
             cursor: pointer;
             color: var(--text-main);
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 18px;
             transition: all 0.2s;
         }
         .month-nav button:hover {
@@ -96,15 +104,16 @@
             text-align: center;
             font-weight: bold;
             color: var(--text-secondary);
-            margin-bottom: 10px;
-            font-size: 14px;
+            margin-bottom: 8px;
+            font-size: 16px;
         }
 
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 12px;
-            margin-bottom: 25px;
+            flex-grow: 1;
+            align-content: center;
         }
 
         .day-cell {
@@ -135,14 +144,15 @@
             transform: none;
         }
 
+        /* 放大清晰的日期数字 */
         .day-number {
             position: absolute;
-            top: -6px;
+            top: -7px;
             left: 50%;
             transform: translateX(-50%);
             font-family: var(--day-font);
-            font-size: 15px;
-            font-weight: 400;
+            font-size: 18px;
+            font-weight: 600;
             color: var(--text-main);
             z-index: 30;
             background: transparent;
@@ -179,49 +189,50 @@
             position: absolute;
             bottom: 2px;
             font-family: var(--day-font);
-            font-size: 10px;
-            font-weight: 400;
+            font-size: 12px;
+            font-weight: 600;
             color: var(--text-main);
             background: var(--card-bg);
-            padding: 0 4px;
+            padding: 0 5px;
             border-radius: 4px;
             white-space: nowrap;
             z-index: 15;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
         }
 
         .stats-panel {
             background: var(--cell-bg);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 15px;
+            padding: 14px 10px;
             display: flex;
             justify-content: space-around;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .stat-item .num {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             color: var(--accent-color);
+            font-family: var(--day-font);
         }
         .stat-item .label {
-            font-size: 12px;
+            font-size: 13px;
             color: var(--text-secondary);
-            margin-top: 4px;
+            margin-top: 3px;
         }
 
         .progress-container {
             background: var(--cell-bg);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 15px 20px;
-            margin-bottom: 20px;
+            padding: 14px 18px;
+            margin-bottom: 15px;
         }
         .progress-info {
             display: flex;
             justify-content: space-between;
-            font-size: 13px;
+            font-size: 14px;
             color: var(--text-main);
             margin-bottom: 8px;
             font-weight: bold;
@@ -251,7 +262,6 @@
             transition: width 0.4s ease;
         }
 
-        /* 分享按钮样式 */
         .share-btn-container {
             text-align: center;
         }
@@ -259,12 +269,12 @@
             background-color: var(--accent-color);
             color: #fff;
             border: none;
-            padding: 10px 24px;
-            border-radius: 12px;
-            font-size: 14px;
+            padding: 12px 28px;
+            border-radius: 14px;
+            font-size: 15px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(200, 138, 89, 0.3);
+            box-shadow: 0 4px 15px rgba(200, 138, 89, 0.35);
             transition: transform 0.2s, opacity 0.2s;
         }
         .btn-share:hover {
@@ -413,16 +423,15 @@
     <div class="progress-container">
         <div class="progress-info">
             <span class="progress-title-btn" onclick="openGoalModal()" title="点击设置月度目标">
-                🐾 本月跑步目标 <span id="goalDisplayText" style="font-weight:normal; font-size:12px; color:var(--text-secondary);">(点击设置)</span>
+                🐾 本月跑步目标 <span id="goalDisplayText" style="font-weight:normal; font-size:13px; color:var(--text-secondary);">(点击设置)</span>
             </span>
-            <span id="runProgressText">0 / 100 km</span>
+            <span id="runProgressText" style="font-family: var(--day-font); font-size: 16px;">0 / 100 km</span>
         </div>
         <div class="progress-bar-bg">
             <div class="progress-bar-fill" id="runProgressBar"></div>
         </div>
     </div>
 
-    <!-- 截图保存分享按钮 -->
     <div class="share-btn-container">
         <button class="btn-share" onclick="exportCardAsImage()">📸 保存高清打卡图</button>
     </div>
@@ -476,13 +485,13 @@
 
 <script>
     const sportTypes = {
-        'run': { name: '跑步', icon: 'run.png?v=13', unit: 'km', type: 'distance' },
-        'dance': { name: '跳舞', icon: 'dance.png?v=13', unit: 'min', type: 'duration' },
-        'badminton': { name: '羽毛球', icon: 'badminton.png?v=13', unit: 'min', type: 'duration' },
-        'workout': { name: '健身', icon: 'workout.png?v=13', unit: 'min', type: 'duration' },
-        'yoga': { name: '瑜伽', icon: 'yoga.png?v=13', unit: 'min', type: 'duration' },
-        'bike': { name: '骑车', icon: 'bike.png?v=13', unit: 'km', type: 'distance' },
-        'swim': { name: '游泳', icon: 'swim.png?v=13', unit: 'min', type: 'duration' }
+        'run': { name: '跑步', icon: 'run.png?v=14', unit: 'km', type: 'distance' },
+        'dance': { name: '跳舞', icon: 'dance.png?v=14', unit: 'min', type: 'duration' },
+        'badminton': { name: '羽毛球', icon: 'badminton.png?v=14', unit: 'min', type: 'duration' },
+        'workout': { name: '健身', icon: 'workout.png?v=14', unit: 'min', type: 'duration' },
+        'yoga': { name: '瑜伽', icon: 'yoga.png?v=14', unit: 'min', type: 'duration' },
+        'bike': { name: '骑车', icon: 'bike.png?v=14', unit: 'km', type: 'distance' },
+        'swim': { name: '游泳', icon: 'swim.png?v=14', unit: 'min', type: 'duration' }
     };
 
     let currentDate = new Date(); 
@@ -715,11 +724,9 @@
         document.getElementById('runProgressBar').style.width = `${percent}%`;
     }
 
-    // 核心截图导出函数
     function exportCardAsImage() {
         const card = document.getElementById('captureCard');
-        // 放大 2 倍以保证手机/电脑上的绝对高清度
-        html2canvas(card, { scale: 2, useCORS: true, backgroundColor: null }).then(canvas => {
+        html2canvas(card, { scale: 3, useCORS: true, backgroundColor: null }).then(canvas => {
             const link = document.createElement('a');
             link.download = '人类丰荣计划-运动打卡.png';
             link.href = canvas.toDataURL('image/png');
