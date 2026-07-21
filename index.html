@@ -35,7 +35,6 @@
             box-sizing: border-box;
         }
 
-        /* 标题部分 */
         .header {
             text-align: center;
             margin-bottom: 25px;
@@ -51,7 +50,6 @@
             margin: 0;
         }
 
-        /* 月份切换 */
         .month-nav {
             display: flex;
             justify-content: center;
@@ -79,7 +77,6 @@
             color: #fff;
         }
 
-        /* 星期表头 */
         .weekdays {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -90,7 +87,6 @@
             font-size: 14px;
         }
 
-        /* 日历网格 */
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -126,21 +122,22 @@
             transform: none;
         }
 
-        /* 日期数字：悬浮在左上角，精致小巧 */
+        /* 核心修改：打字机字体、加粗、最高层级 z-index: 20，绝不被章子盖住 */
         .day-number {
             position: absolute;
-            top: 4px;
-            left: 6px;
-            font-size: 11px;
-            font-weight: bold;
-            color: #8c7365;
-            z-index: 10;
-            background: rgba(255, 253, 249, 0.85);
-            padding: 0 3px;
+            top: 5px;
+            left: 7px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 12px;
+            font-weight: 900;
+            color: #5c4033;
+            z-index: 20;
+            background: rgba(255, 253, 249, 0.92);
+            padding: 1px 4px;
             border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(92, 64, 51, 0.1);
         }
 
-        /* 盖章完成后的格子（去掉多余边框，让大章直接占满） */
         .day-cell.stamp-stamped {
             background: #fffdf9;
             border: none;
@@ -148,7 +145,6 @@
             border-radius: 50%;
         }
 
-        /* 印章中心内容样式：将图片放大到占据整个格子的大部分空间 */
         .stamp-content {
             width: 100%;
             height: 100%;
@@ -156,16 +152,17 @@
             align-items: center;
             justify-content: center;
             position: relative;
+            z-index: 5;
         }
         .stamp-content img {
-            width: 90%;
-            height: 90%;
+            width: 95%;
+            height: 95%;
             object-fit: contain;
         }
-        /* 子文案（公里/分钟）精致地浮在下方 */
         .stamp-subtext {
             position: absolute;
-            bottom: 3px;
+            bottom: 2px;
+            font-family: 'Courier New', Courier, monospace;
             font-size: 8px;
             font-weight: bold;
             color: #7f6354;
@@ -173,10 +170,9 @@
             padding: 0 4px;
             border-radius: 4px;
             white-space: nowrap;
-            z-index: 5;
+            z-index: 15;
         }
 
-        /* 底部统计面板 */
         .stats-panel {
             background: rgba(230, 213, 195, 0.2);
             border: 1px solid var(--border-color);
@@ -198,7 +194,6 @@
             margin-top: 4px;
         }
 
-        /* 跑步进度条面板 */
         .progress-container {
             background: rgba(230, 213, 195, 0.15);
             border: 1px solid var(--border-color);
@@ -238,7 +233,6 @@
             transition: width 0.4s ease;
         }
 
-        /* 弹窗样式 */
         .modal {
             display: none;
             position: fixed;
@@ -337,10 +331,8 @@
 
     <div class="calendar-grid" id="calendarGrid"></div>
 
-    <!-- 底部统计 -->
     <div class="stats-panel" id="statsPanel"></div>
 
-    <!-- 跑步进度条 -->
     <div class="progress-container">
         <div class="progress-info">
             <span class="progress-title-btn" onclick="openGoalModal()" title="点击设置月度目标">
@@ -354,7 +346,6 @@
     </div>
 </div>
 
-<!-- 选择运动弹窗 -->
 <div class="modal" id="actionModal">
     <div class="modal-content">
         <h3>选择今日运动打卡</h3>
@@ -374,7 +365,6 @@
     </div>
 </div>
 
-<!-- 设置月度目标弹窗 -->
 <div class="modal" id="goalModal">
     <div class="modal-content">
         <h3>设置本月跑步目标</h3>
@@ -391,13 +381,13 @@
 
 <script>
     const sportTypes = {
-        'run': { name: '跑步', icon: 'run.png', unit: '公里', type: 'distance' },
-        'dance': { name: '跳舞', icon: 'dance.png', unit: '分钟', type: 'duration' },
-        'badminton': { name: '羽毛球', icon: 'badminton.png', unit: '分钟', type: 'duration' },
-        'workout': { name: '健身', icon: 'workout.png', unit: '分钟', type: 'duration' },
-        'yoga': { name: '瑜伽', icon: 'yoga.png', unit: '分钟', type: 'duration' },
-        'bike': { name: '骑车', icon: 'bike.png', unit: '公里', type: 'distance' },
-        'swim': { name: '游泳', icon: 'swim.png', unit: '分钟', type: 'duration' }
+        'run': { name: '跑步', icon: 'run.png?v=3', unit: '公里', type: 'distance' },
+        'dance': { name: '跳舞', icon: 'dance.png?v=3', unit: '分钟', type: 'duration' },
+        'badminton': { name: '羽毛球', icon: 'badminton.png?v=3', unit: '分钟', type: 'duration' },
+        'workout': { name: '健身', icon: 'workout.png?v=3', unit: '分钟', type: 'duration' },
+        'yoga': { name: '瑜伽', icon: 'yoga.png?v=3', unit: '分钟', type: 'duration' },
+        'bike': { name: '骑车', icon: 'bike.png?v=3', unit: '公里', type: 'distance' },
+        'swim': { name: '游泳', icon: 'swim.png?v=3', unit: '分钟', type: 'duration' }
     };
 
     let currentDate = new Date(); 
@@ -564,7 +554,8 @@
 
         for (let key in sportTypes) counts[key] = 0;
 
-        for (let day = 1; day <= totalDays; day++) {
+        let daysInMonth = totalDays;
+        for (let day = 1; day <= daysInMonth; day++) {
             const dateKey = `${year}-${month}-${day}`;
             if (checkIns[dateKey]) {
                 activeDays++;
