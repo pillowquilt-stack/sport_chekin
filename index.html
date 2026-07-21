@@ -399,7 +399,7 @@
             <span class="progress-title-btn" onclick="openGoalModal()" title="点击设置月度目标">
                 🐾 本月跑步目标 <span id="goalDisplayText" style="font-weight:normal; font-size:12px; color:var(--text-secondary);">(点击设置)</span>
             </span>
-            <span id="runProgressText">0 / 100 公里</span>
+            <span id="runProgressText">0 / 100 km</span>
         </div>
         <div class="progress-bar-bg">
             <div class="progress-bar-fill" id="runProgressBar"></div>
@@ -427,7 +427,7 @@
         <div class="input-section" id="inputSection">
             <span id="inputLabel">距离：</span>
             <input type="number" id="detailValue" step="0.1" placeholder="例如 5">
-            <span id="inputUnit">公里</span>
+            <span id="inputUnit">km</span>
         </div>
 
         <div class="modal-actions">
@@ -444,7 +444,7 @@
         <h3>设置本月跑步目标</h3>
         <div style="margin-bottom: 15px; font-size: 13px; color:var(--text-secondary);">输入本月计划完成的总公里数：</div>
         <div style="margin-bottom: 20px;">
-            <input type="number" id="goalInput" step="1" style="width: 100px; padding: 6px; border: 1px solid var(--border-color); border-radius: 6px; text-align: center; font-size: 16px; background:var(--card-bg); color:var(--text-main);" placeholder="100"> 公里
+            <input type="number" id="goalInput" step="1" style="width: 100px; padding: 6px; border: 1px solid var(--border-color); border-radius: 6px; text-align: center; font-size: 16px; background:var(--card-bg); color:var(--text-main);" placeholder="100"> km
         </div>
         <div class="modal-actions">
             <button class="action-btn btn-confirm" onclick="saveGoal()">保存目标</button>
@@ -455,13 +455,13 @@
 
 <script>
     const sportTypes = {
-        'run': { name: '跑步', icon: 'run.png?v=11', unit: '公里', type: 'distance' },
-        'dance': { name: '跳舞', icon: 'dance.png?v=11', unit: '分钟', type: 'duration' },
-        'badminton': { name: '羽毛球', icon: 'badminton.png?v=11', unit: '分钟', type: 'duration' },
-        'workout': { name: '健身', icon: 'workout.png?v=11', unit: '分钟', type: 'duration' },
-        'yoga': { name: '瑜伽', icon: 'yoga.png?v=11', unit: '分钟', type: 'duration' },
-        'bike': { name: '骑车', icon: 'bike.png?v=11', unit: '公里', type: 'distance' },
-        'swim': { name: '游泳', icon: 'swim.png?v=11', unit: '分钟', type: 'duration' }
+        'run': { name: '跑步', icon: 'run.png?v=12', unit: 'km', type: 'distance' },
+        'dance': { name: '跳舞', icon: 'dance.png?v=12', unit: 'min', type: 'duration' },
+        'badminton': { name: '羽毛球', icon: 'badminton.png?v=12', unit: 'min', type: 'duration' },
+        'workout': { name: '健身', icon: 'workout.png?v=12', unit: 'min', type: 'duration' },
+        'yoga': { name: '瑜伽', icon: 'yoga.png?v=12', unit: 'min', type: 'duration' },
+        'bike': { name: '骑车', icon: 'bike.png?v=12', unit: 'km', type: 'distance' },
+        'swim': { name: '游泳', icon: 'swim.png?v=12', unit: 'min', type: 'duration' }
     };
 
     let currentDate = new Date(); 
@@ -688,8 +688,8 @@
             <div class="stat-item"><div class="num">${counts['workout'] || 0}</div><div class="label">健身</div></div>
         `;
 
-        document.getElementById('goalDisplayText').innerText = `(目标: ${monthlyGoal} 公里)`;
-        document.getElementById('runProgressText').innerText = `${totalRunKm.toFixed(1)} / ${monthlyGoal} 公里`;
+        document.getElementById('goalDisplayText').innerText = `(目标: ${monthlyGoal} km)`;
+        document.getElementById('runProgressText').innerText = `${totalRunKm.toFixed(1)} / ${monthlyGoal} km`;
         
         const percent = Math.min(100, (totalRunKm / monthlyGoal) * 100).toFixed(1);
         document.getElementById('runProgressBar').style.width = `${percent}%`;
