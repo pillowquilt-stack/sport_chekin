@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>人类丰荣计划 - 运动打卡</title>
+    <!-- 引入 Google Fonts 字体库：Abel 和 Comfortaa -->
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Comfortaa:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             /* 默认采用干净清爽的暖白米色系 */
@@ -14,12 +16,12 @@
             --border-color: #eae3dc;
             --cell-bg: #faf8f5;
             --accent-color: #c88a59;
-            --stamp-bg: #ffffff; /* 已打卡时的独立底衬颜色，确保深色模式下图案清晰 */
+            --stamp-bg: #ffffff; 
             
             /* ========================================== */
-            /* 【数字字体替换位】可在下方引号内修改为你想要的字体 */
+            /* 【数字字体】已完美配置为 Abel 或 Comfortaa */
             /* ========================================== */
-            --day-font: 'Courier New', Courier, monospace;
+            --day-font: 'Abel', 'Comfortaa', sans-serif;
         }
 
         body {
@@ -136,15 +138,15 @@
             transform: none;
         }
 
-        /* 干净清爽的日期数字（无杂色背景） */
+        /* 干净清爽的日期数字：应用 Abel / Comfortaa 字体 */
         .day-number {
             position: absolute;
             top: -6px;
             left: 50%;
             transform: translateX(-50%);
             font-family: var(--day-font);
-            font-size: 12px;
-            font-weight: 800;
+            font-size: 13px;
+            font-weight: 700;
             color: var(--text-main);
             z-index: 30;
             background: transparent;
@@ -182,8 +184,8 @@
             position: absolute;
             bottom: 2px;
             font-family: var(--day-font);
-            font-size: 8px;
-            font-weight: bold;
+            font-size: 9px;
+            font-weight: 700;
             color: var(--text-main);
             background: var(--card-bg);
             padding: 0 4px;
@@ -405,7 +407,7 @@
     </div>
 </div>
 
-<!-- 右下角悬浮调色盘：精选 6 款清爽通透、印章完美显现的手帐主题 -->
+<!-- 右下角悬浮调色盘 -->
 <div class="palette-float">
     <span>🎨 主题</span>
     <div class="color-dot" style="background: #f7f5f0;" onclick="setTheme('#f7f5f0', '#ffffff', '#3d332a', '#8c7d73', '#eae3dc', '#faf8f5', '#c88a59', '#ffffff')" title="暖白米色"></div>
@@ -453,13 +455,13 @@
 
 <script>
     const sportTypes = {
-        'run': { name: '跑步', icon: 'run.png?v=7', unit: '公里', type: 'distance' },
-        'dance': { name: '跳舞', icon: 'dance.png?v=7', unit: '分钟', type: 'duration' },
-        'badminton': { name: '羽毛球', icon: 'badminton.png?v=7', unit: '分钟', type: 'duration' },
-        'workout': { name: '健身', icon: 'workout.png?v=7', unit: '分钟', type: 'duration' },
-        'yoga': { name: '瑜伽', icon: 'yoga.png?v=7', unit: '分钟', type: 'duration' },
-        'bike': { name: '骑车', icon: 'bike.png?v=7', unit: '公里', type: 'distance' },
-        'swim': { name: '游泳', icon: 'swim.png?v=7', unit: '分钟', type: 'duration' }
+        'run': { name: '跑步', icon: 'run.png?v=8', unit: '公里', type: 'distance' },
+        'dance': { name: '跳舞', icon: 'dance.png?v=8', unit: '分钟', type: 'duration' },
+        'badminton': { name: '羽毛球', icon: 'badminton.png?v=8', unit: '分钟', type: 'duration' },
+        'workout': { name: '健身', icon: 'workout.png?v=8', unit: '分钟', type: 'duration' },
+        'yoga': { name: '瑜伽', icon: 'yoga.png?v=8', unit: '分钟', type: 'duration' },
+        'bike': { name: '骑车', icon: 'bike.png?v=8', unit: '公里', type: 'distance' },
+        'swim': { name: '游泳', icon: 'swim.png?v=8', unit: '分钟', type: 'duration' }
     };
 
     let currentDate = new Date(); 
