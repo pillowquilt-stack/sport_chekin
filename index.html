@@ -34,15 +34,15 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* 采用自适应高度但保持完美 3:4 比例视觉的卡片容器，彻底解决拥挤感 */
+        /* 锁死完美的 3:4 竖屏比例卡片，居中显示 */
         .container {
             background-color: var(--card-bg);
             border: 2px solid var(--border-color);
             border-radius: 28px;
             box-shadow: 0 12px 35px rgba(61, 51, 42, 0.06);
-            width: 500px;
+            width: 480px;
             aspect-ratio: 3 / 4;
-            padding: 28px 25px;
+            padding: 26px 24px;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
@@ -54,13 +54,13 @@
             text-align: center;
         }
         .header h1 {
-            font-size: 24px;
+            font-size: 28px; /* 进一步放大主标题 */
             margin: 0 0 4px 0;
             letter-spacing: 2px;
             color: var(--text-main);
         }
         .header p {
-            font-size: 13px;
+            font-size: 15px; /* 放大副标题 */
             color: var(--text-secondary);
             margin: 0;
             font-weight: 500;
@@ -72,7 +72,7 @@
             align-items: center;
             gap: 20px;
             font-weight: bold;
-            font-size: 18px;
+            font-size: 21px; /* 放大月份 */
             color: var(--text-main);
             font-family: var(--day-font);
         }
@@ -102,7 +102,7 @@
             text-align: center;
             font-weight: bold;
             color: var(--text-secondary);
-            font-size: 13px;
+            font-size: 14px;
         }
 
         .calendar-grid {
@@ -144,7 +144,7 @@
             top: 4px;
             right: 6px;
             font-family: var(--day-font);
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 600;
             color: var(--text-secondary);
             z-index: 30;
@@ -176,7 +176,7 @@
             position: absolute;
             bottom: 2px;
             font-family: var(--day-font);
-            font-size: 10px;
+            font-size: 11px; /* 稍微加大印章内的数据文字 */
             font-weight: 600;
             color: var(--text-main);
             background: var(--card-bg);
@@ -191,35 +191,36 @@
             background: var(--cell-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 10px 6px;
+            padding: 11px 6px;
             display: flex;
             justify-content: space-around;
             text-align: center;
         }
         .stat-item .num {
-            font-size: 16px;
+            font-size: 19px; /* 大幅放大底部总结数字 */
             font-weight: bold;
             color: var(--accent-color);
             font-family: var(--day-font);
         }
         .stat-item .label {
-            font-size: 11px;
+            font-size: 12px; /* 放大标签文字 */
             color: var(--text-secondary);
             margin-top: 2px;
+            font-weight: 500;
         }
 
         .progress-container {
             background: var(--cell-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 10px 15px;
+            padding: 11px 16px;
         }
         .progress-info {
             display: flex;
             justify-content: space-between;
-            font-size: 12px;
+            font-size: 13px; /* 放大进度标题 */
             color: var(--text-main);
-            margin-bottom: 5px;
+            margin-bottom: 6px;
             font-weight: bold;
         }
         .progress-title-btn {
@@ -234,7 +235,7 @@
         }
         .progress-bar-bg {
             background: var(--border-color);
-            height: 8px;
+            height: 9px; /* 稍微加粗进度条 */
             border-radius: 4px;
             overflow: hidden;
             position: relative;
@@ -408,9 +409,9 @@
     <div class="progress-container">
         <div class="progress-info">
             <span class="progress-title-btn" onclick="openGoalModal()" title="点击设置月度目标">
-                🐾 本月跑步目标 <span id="goalDisplayText" style="font-weight:normal; font-size:11px; color:var(--text-secondary);">(点击设置)</span>
+                🐾 本月跑步目标 <span id="goalDisplayText" style="font-weight:normal; font-size:12px; color:var(--text-secondary);">(点击设置)</span>
             </span>
-            <span id="runProgressText" style="font-family: var(--day-font); font-size: 14px;">0 / 100 km</span>
+            <span id="runProgressText" style="font-family: var(--day-font); font-size: 15px;">0 / 100 km</span>
         </div>
         <div class="progress-bar-bg">
             <div class="progress-bar-fill" id="runProgressBar"></div>
@@ -470,13 +471,13 @@
 
 <script>
     const sportTypes = {
-        'run': { name: '跑步', icon: 'run.png?v=17', unit: 'km', type: 'distance' },
-        'dance': { name: '跳舞', icon: 'dance.png?v=17', unit: 'min', type: 'duration' },
-        'badminton': { name: '羽毛球', icon: 'badminton.png?v=17', unit: 'min', type: 'duration' },
-        'workout': { name: '健身', icon: 'workout.png?v=17', unit: 'min', type: 'duration' },
-        'yoga': { name: '瑜伽', icon: 'yoga.png?v=17', unit: 'min', type: 'duration' },
-        'bike': { name: '骑车', icon: 'bike.png?v=17', unit: 'km', type: 'distance' },
-        'swim': { name: '游泳', icon: 'swim.png?v=17', unit: 'min', type: 'duration' }
+        'run': { name: '跑步', icon: 'run.png?v=19', unit: 'km', type: 'distance' },
+        'dance': { name: '跳舞', icon: 'dance.png?v=19', unit: 'min', type: 'duration' },
+        'badminton': { name: '羽毛球', icon: 'badminton.png?v=19', unit: 'min', type: 'duration' },
+        'workout': { name: '健身', icon: 'workout.png?v=19', unit: 'min', type: 'duration' },
+        'yoga': { name: '瑜伽', icon: 'yoga.png?v=19', unit: 'min', type: 'duration' },
+        'bike': { name: '骑车', icon: 'bike.png?v=19', unit: 'km', type: 'distance' },
+        'swim': { name: '游泳', icon: 'swim.png?v=19', unit: 'min', type: 'duration' }
     };
 
     let currentDate = new Date(); 
@@ -709,24 +710,18 @@
         document.getElementById('runProgressBar').style.width = `${percent}%`;
     }
 
-    // 核心修复：截图前自动隐藏保存按钮，截图完成后立刻恢复，并锁定 3:4 竖屏比例 (900x1200)
+    // 核心：截图前自动隐藏保存按钮，完美放大 3 倍输出 3:4 比例高清无杂质图片
     function exportCardAsImage() {
         const card = document.getElementById('captureCard');
         const btnContainer = document.getElementById('shareBtnContainer');
         
-        // 截图前瞬间隐藏保存按钮
         btnContainer.style.display = 'none';
 
         html2canvas(card, {
-            scale: 2,
-            width: 900,
-            height: 1200,
-            windowWidth: 900,
-            windowHeight: 1200,
+            scale: 3,
             useCORS: true,
             backgroundColor: null
         }).then(canvas => {
-            // 恢复保存按钮显示
             btnContainer.style.display = 'block';
 
             const link = document.createElement('a');
@@ -734,7 +729,6 @@
             link.href = canvas.toDataURL('image/png');
             link.click();
         }).catch(err => {
-            // 异常时也确保按钮恢复
             btnContainer.style.display = 'block';
             console.error(err);
         });
