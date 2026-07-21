@@ -11,6 +11,12 @@
             --text-main: #5c4033;
             --border-color: #e6d5c3;
             --accent-color: #d4a373;
+            
+            /* ========================================== */
+            /* 【在这里可以随时替换你想要的数字字体】      */
+            /* 例如换成其它字体：'YourFontName', monospace */
+            /* ========================================== */
+            --day-font: 'Courier New', Courier, monospace;
         }
 
         body {
@@ -105,7 +111,8 @@
             justify-content: center;
             transition: all 0.2s;
             border: 2px dashed transparent;
-            overflow: hidden;
+            /* 改为 visible，让移到外面的数字也能完美显示 */
+            overflow: visible; 
         }
 
         .day-cell:hover {
@@ -122,20 +129,22 @@
             transform: none;
         }
 
-        /* 核心修改：打字机字体、加粗、最高层级 z-index: 20，绝不被章子盖住 */
+        /* 日期数字：无背景、无边框、无阴影，完全显示在圆圈正上方，字体可由上方 --day-font 自由替换 */
         .day-number {
             position: absolute;
-            top: 5px;
-            left: 7px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 12px;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--day-font);
+            font-size: 13px;
             font-weight: 900;
             color: #5c4033;
-            z-index: 20;
-            background: rgba(255, 253, 249, 0.92);
-            padding: 1px 4px;
-            border-radius: 4px;
-            box-shadow: 0 1px 3px rgba(92, 64, 51, 0.1);
+            z-index: 30;
+            background: transparent;
+            padding: 0;
+            border: none;
+            box-shadow: none;
+            white-space: nowrap;
         }
 
         .day-cell.stamp-stamped {
@@ -143,6 +152,7 @@
             border: none;
             box-shadow: 0 4px 12px rgba(92,64,51,0.1);
             border-radius: 50%;
+            overflow: visible;
         }
 
         .stamp-content {
@@ -155,14 +165,14 @@
             z-index: 5;
         }
         .stamp-content img {
-            width: 95%;
-            height: 95%;
+            width: 90%;
+            height: 90%;
             object-fit: contain;
         }
         .stamp-subtext {
             position: absolute;
             bottom: 2px;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: var(--day-font);
             font-size: 8px;
             font-weight: bold;
             color: #7f6354;
@@ -381,13 +391,13 @@
 
 <script>
     const sportTypes = {
-        'run': { name: '跑步', icon: 'run.png?v=3', unit: '公里', type: 'distance' },
-        'dance': { name: '跳舞', icon: 'dance.png?v=3', unit: '分钟', type: 'duration' },
-        'badminton': { name: '羽毛球', icon: 'badminton.png?v=3', unit: '分钟', type: 'duration' },
-        'workout': { name: '健身', icon: 'workout.png?v=3', unit: '分钟', type: 'duration' },
-        'yoga': { name: '瑜伽', icon: 'yoga.png?v=3', unit: '分钟', type: 'duration' },
-        'bike': { name: '骑车', icon: 'bike.png?v=3', unit: '公里', type: 'distance' },
-        'swim': { name: '游泳', icon: 'swim.png?v=3', unit: '分钟', type: 'duration' }
+        'run': { name: '跑步', icon: 'run.png?v=4', unit: '公里', type: 'distance' },
+        'dance': { name: '跳舞', icon: 'dance.png?v=4', unit: '分钟', type: 'duration' },
+        'badminton': { name: '羽毛球', icon: 'badminton.png?v=4', unit: '分钟', type: 'duration' },
+        'workout': { name: '健身', icon: 'workout.png?v=4', unit: '分钟', type: 'duration' },
+        'yoga': { name: '瑜伽', icon: 'yoga.png?v=4', unit: '分钟', type: 'duration' },
+        'bike': { name: '骑车', icon: 'bike.png?v=4', unit: '公里', type: 'distance' },
+        'swim': { name: '游泳', icon: 'swim.png?v=4', unit: '分钟', type: 'duration' }
     };
 
     let currentDate = new Date(); 
