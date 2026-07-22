@@ -246,24 +246,24 @@
             transition: width 0.4s ease;
         }
 
-        .share-btn-container {
+        /* 顶部触发海报模式的精致小入口（可以点击进入截图模式） */
+        .poster-trigger-container {
             text-align: center;
         }
-        .btn-share {
-            background-color: var(--accent-color);
-            color: #fff;
-            border: none;
-            padding: 11px 26px;
-            border-radius: 13px;
-            font-size: 14px;
-            font-weight: bold;
+        .btn-poster-mode {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px dashed var(--border-color);
+            padding: 8px 20px;
+            border-radius: 12px;
+            font-size: 13px;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(200, 138, 89, 0.3);
-            transition: transform 0.2s, opacity 0.2s;
+            transition: all 0.2s;
         }
-        .btn-share:hover {
-            opacity: 0.9;
-            transform: scale(1.02);
+        .btn-poster-mode:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            background: var(--cell-bg);
         }
 
         /* 右下角悬浮调色盘 */
@@ -420,7 +420,7 @@
 
 <!-- 顶部海报模式专属提示条 -->
 <div class="poster-tip-bar" id="posterTipBar">
-    <span>✨ 已进入海报模式，请直接截图卡片</span>
+    <span>✨ 已进入沉浸海报模式，请直接截图卡片</span>
     <button class="exit-poster-btn" onclick="exitPosterMode()">退出海报模式</button>
 </div>
 
@@ -456,8 +456,8 @@
         </div>
     </div>
 
-    <div class="share-btn-container" id="shareBtnContainer">
-        <button class="btn-share" onclick="enterPosterMode()">📸 生成干净的海报</button>
+    <div class="poster-trigger-container" id="posterTriggerContainer">
+        <button class="btn-poster-mode" onclick="enterPosterMode()">✨ 进入无干扰海报截图模式</button>
     </div>
 </div>
 
@@ -509,13 +509,13 @@
 
 <script>
     const sportTypes = {
-        'run': { name: '跑步', icon: 'run.png?v=29', unit: 'km', type: 'distance' },
-        'dance': { name: '跳舞', icon: 'dance.png?v=29', unit: 'min', type: 'duration' },
-        'badminton': { name: '羽毛球', icon: 'badminton.png?v=29', unit: 'min', type: 'duration' },
-        'workout': { name: '健身', icon: 'workout.png?v=29', unit: 'min', type: 'duration' },
-        'yoga': { name: '瑜伽', icon: 'yoga.png?v=29', unit: 'min', type: 'duration' },
-        'bike': { name: '骑车', icon: 'bike.png?v=29', unit: 'km', type: 'distance' },
-        'swim': { name: '游泳', icon: 'swim.png?v=29', unit: 'min', type: 'duration' }
+        'run': { name: '跑步', icon: 'run.png?v=30', unit: 'km', type: 'distance' },
+        'dance': { name: '跳舞', icon: 'dance.png?v=30', unit: 'min', type: 'duration' },
+        'badminton': { name: '羽毛球', icon: 'badminton.png?v=30', unit: 'min', type: 'duration' },
+        'workout': { name: '健身', icon: 'workout.png?v=30', unit: 'min', type: 'duration' },
+        'yoga': { name: '瑜伽', icon: 'yoga.png?v=30', unit: 'min', type: 'duration' },
+        'bike': { name: '骑车', icon: 'bike.png?v=30', unit: 'km', type: 'distance' },
+        'swim': { name: '游泳', icon: 'swim.png?v=30', unit: 'min', type: 'duration' }
     };
 
     let currentDate = new Date(); 
@@ -747,17 +747,15 @@
         document.getElementById('runProgressBar').style.width = `${percent}%`;
     }
 
-    // 进入海报模式：隐藏底部按钮和右下角调色盘，在顶部浮现提示条
     function enterPosterMode() {
-        document.getElementById('shareBtnContainer').style.display = 'none';
+        document.getElementById('posterTriggerContainer').style.display = 'none';
         document.getElementById('paletteFloat').style.opacity = '0';
         document.getElementById('paletteFloat').style.pointerEvents = 'none';
         document.getElementById('posterTipBar').classList.add('show');
     }
 
-    // 退出海报模式：恢复一切
     function exitPosterMode() {
-        document.getElementById('shareBtnContainer').style.display = 'block';
+        document.getElementById('posterTriggerContainer').style.display = 'block';
         document.getElementById('paletteFloat').style.opacity = '1';
         document.getElementById('paletteFloat').style.pointerEvents = 'auto';
         document.getElementById('posterTipBar').classList.remove('show');
