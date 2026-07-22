@@ -34,7 +34,7 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* 网页端卡片：保持呼吸感、舒展优雅 */
+        /* 网页端卡片：保持完美的呼吸感、精致优雅 */
         .container {
             background-color: var(--card-bg);
             border: 2px solid var(--border-color);
@@ -268,44 +268,7 @@
             transform: scale(1.02);
         }
 
-        /* 隐藏的离屏高清海报模板（专为手机端清晰查看、3:4完美比例定制设计） */
-        #exportTemplate {
-            position: fixed;
-            left: -9999px;
-            top: 0;
-            width: 1200px;
-            height: 1600px; /* 严格 3:4 比例 */
-            background-color: var(--card-bg);
-            border: 4px solid var(--border-color);
-            border-radius: 64px;
-            padding: 70px 60px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            z-index: -999;
-        }
-        #exportTemplate .ex-header h1 { font-size: 56px; margin: 0 0 10px 0; letter-spacing: 3px; color: var(--text-main); text-align: center; }
-        #exportTemplate .ex-header p { font-size: 32px; color: var(--text-secondary); margin: 0; font-weight: 500; text-align: center; }
-        #exportTemplate .ex-month { font-size: 44px; font-weight: bold; text-align: center; color: var(--text-main); font-family: var(--day-font); }
-        #exportTemplate .ex-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-weight: bold; color: var(--text-secondary); font-size: 28px; }
-        #exportTemplate .ex-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 20px; }
-        #exportTemplate .ex-cell { aspect-ratio: 1; background: var(--cell-bg); border-radius: 50%; position: relative; display: flex; align-items: center; justify-content: center; }
-        #exportTemplate .ex-cell.empty { background: transparent; }
-        #exportTemplate .ex-number { position: absolute; top: 12px; right: 16px; font-family: var(--day-font); font-size: 26px; font-weight: 600; color: var(--text-secondary); }
-        #exportTemplate .ex-cell.stamped { background: var(--stamp-bg); box-shadow: 0 8px 24px rgba(61, 51, 42, 0.08); }
-        #exportTemplate .ex-stamp-box { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; position: relative; }
-        #exportTemplate .ex-stamp-box img { width: 85%; height: 85%; object-fit: contain; }
-        #exportTemplate .ex-subtext { position: absolute; bottom: 6px; font-family: var(--day-font); font-size: 24px; font-weight: 600; color: var(--text-main); background: var(--card-bg); padding: 2px 10px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
-        #exportTemplate .ex-stats { background: var(--cell-bg); border: 2px solid var(--border-color); border-radius: 28px; padding: 28px 16px; display: flex; justify-content: space-around; text-align: center; }
-        #exportTemplate .ex-stat-num { font-size: 42px; font-weight: bold; color: var(--accent-color); font-family: var(--day-font); }
-        #exportTemplate .ex-stat-label { font-size: 26px; color: var(--text-secondary); margin-top: 6px; font-weight: 500; }
-        #exportTemplate .ex-progress { background: var(--cell-bg); border: 2px solid var(--border-color); border-radius: 28px; padding: 28px 36px; }
-        #exportTemplate .ex-progress-info { display: flex; justify-content: space-between; font-size: 30px; color: var(--text-main); margin-bottom: 12px; font-weight: bold; }
-        #exportTemplate .ex-progress-bar-bg { background: var(--border-color); height: 20px; border-radius: 10px; overflow: hidden; }
-        #exportTemplate .ex-progress-bar-fill { background: linear-gradient(90deg, #c88a59, #e0a96d); height: 100%; border-radius: 10px; }
-
-        /* 悬浮调色盘 */
+        /* 右下角悬浮调色盘 */
         .palette-float {
             position: fixed;
             bottom: 25px;
@@ -423,7 +386,6 @@
 </head>
 <body>
 
-<!-- 网页端展示的卡片 -->
 <div class="container" id="captureCard">
     <div class="header">
         <h1>「人类丰荣计划」</h1>
@@ -456,31 +418,8 @@
         </div>
     </div>
 
-    <div class="share-btn-container">
+    <div class="share-btn-container" id="shareBtnContainer">
         <button class="btn-share" onclick="exportCardAsImage()">📸 保存高清打卡图</button>
-    </div>
-</div>
-
-<!-- 专属离屏高清海报模板（手机微信查看时字大、清晰、排版绝佳） -->
-<div id="exportTemplate">
-    <div class="ex-header">
-        <h1>「人类丰荣计划」</h1>
-        <p>/ 备战奥运</p>
-    </div>
-    <div class="ex-month" id="exMonthYear">July 2026</div>
-    <div class="ex-weekdays">
-        <div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div><div>S</div>
-    </div>
-    <div class="ex-grid" id="exCalendarGrid"></div>
-    <div class="ex-stats" id="exStatsPanel"></div>
-    <div class="ex-progress">
-        <div class="ex-progress-info">
-            <span>🐾 本月跑步目标 <span id="exGoalText" style="font-weight:normal; font-size:24px; color:var(--text-secondary);"></span></span>
-            <span id="exRunProgressText" style="font-family: var(--day-font);">0 / 100 km</span>
-        </div>
-        <div class="ex-progress-bar-bg">
-            <div class="ex-progress-bar-fill" id="exRunProgressBar"></div>
-        </div>
     </div>
 </div>
 
@@ -532,13 +471,13 @@
 
 <script>
     const sportTypes = {
-        'run': { name: '跑步', icon: 'run.png?v=21', unit: 'km', type: 'distance' },
-        'dance': { name: '跳舞', icon: 'dance.png?v=21', unit: 'min', type: 'duration' },
-        'badminton': { name: '羽毛球', icon: 'badminton.png?v=21', unit: 'min', type: 'duration' },
-        'workout': { name: '健身', icon: 'workout.png?v=21', unit: 'min', type: 'duration' },
-        'yoga': { name: '瑜伽', icon: 'yoga.png?v=21', unit: 'min', type: 'duration' },
-        'bike': { name: '骑车', icon: 'bike.png?v=21', unit: 'km', type: 'distance' },
-        'swim': { name: '游泳', icon: 'swim.png?v=21', unit: 'min', type: 'duration' }
+        'run': { name: '跑步', icon: 'run.png?v=22', unit: 'km', type: 'distance' },
+        'dance': { name: '跳舞', icon: 'dance.png?v=22', unit: 'min', type: 'duration' },
+        'badminton': { name: '羽毛球', icon: 'badminton.png?v=22', unit: 'min', type: 'duration' },
+        'workout': { name: '健身', icon: 'workout.png?v=22', unit: 'min', type: 'duration' },
+        'yoga': { name: '瑜伽', icon: 'yoga.png?v=22', unit: 'min', type: 'duration' },
+        'bike': { name: '骑车', icon: 'bike.png?v=22', unit: 'km', type: 'distance' },
+        'swim': { name: '游泳', icon: 'swim.png?v=22', unit: 'min', type: 'duration' }
     };
 
     let currentDate = new Date(); 
@@ -587,20 +526,14 @@
         const month = currentDate.getMonth();
         
         const standardMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        const monthStr = `${standardMonths[month]} ${year}`;
-        document.getElementById('currentMonthYear').innerText = monthStr;
-        document.getElementById('exMonthYear').innerText = monthStr;
+        document.getElementById('currentMonthYear').innerText = `${standardMonths[month]} ${year}`;
 
-        renderWebCalendar(year, month);
-        renderExportTemplateCalendar(year, month);
-    }
-
-    // 渲染网页端日历
-    function renderWebCalendar(year, month) {
         const grid = document.getElementById('calendarGrid');
         grid.innerHTML = '';
+
         let firstDayIndex = new Date(year, month, 1).getDay();
         firstDayIndex = firstDayIndex === 0 ? 6 : firstDayIndex - 1; 
+
         const totalDays = new Date(year, month + 1, 0).getDate();
 
         for (let i = 0; i < firstDayIndex; i++) {
@@ -612,6 +545,7 @@
         for (let day = 1; day <= totalDays; day++) {
             const cell = document.createElement('div');
             cell.className = 'day-cell';
+            
             const dateKey = `${year}-${month}-${day}`;
             
             const numSpan = document.createElement('span');
@@ -622,60 +556,24 @@
             if (checkIns[dateKey]) {
                 const record = checkIns[dateKey];
                 const sport = sportTypes[record.sport];
+                
                 if (sport) {
                     cell.classList.add('stamp-stamped');
+
                     const stampDiv = document.createElement('div');
                     stampDiv.className = 'stamp-content';
+                    
                     let subTextStr = (record.value !== undefined && record.value !== '') ? `${record.value}${sport.unit}` : '';
                     stampDiv.innerHTML = `<img src="${sport.icon}" alt="${sport.name}"><span class="stamp-subtext">${subTextStr}</span>`;
                     cell.appendChild(stampDiv);
                 }
             }
+
             cell.onclick = () => openModal(dateKey);
             grid.appendChild(cell);
         }
-        updateWebStats(year, month, totalDays);
-    }
 
-    // 渲染离屏导出模板日历（大字号大间距）
-    function renderExportTemplateCalendar(year, month) {
-        const grid = document.getElementById('exCalendarGrid');
-        grid.innerHTML = '';
-        let firstDayIndex = new Date(year, month, 1).getDay();
-        firstDayIndex = firstDayIndex === 0 ? 6 : firstDayIndex - 1; 
-        const totalDays = new Date(year, month + 1, 0).getDate();
-
-        for (let i = 0; i < firstDayIndex; i++) {
-            const emptyCell = document.createElement('div');
-            emptyCell.className = 'ex-cell empty';
-            grid.appendChild(emptyCell);
-        }
-
-        for (let day = 1; day <= totalDays; day++) {
-            const cell = document.createElement('div');
-            cell.className = 'ex-cell';
-            const dateKey = `${year}-${month}-${day}`;
-            
-            const numSpan = document.createElement('span');
-            numSpan.className = 'ex-number';
-            numSpan.innerText = day;
-            cell.appendChild(numSpan);
-
-            if (checkIns[dateKey]) {
-                const record = checkIns[dateKey];
-                const sport = sportTypes[record.sport];
-                if (sport) {
-                    cell.classList.add('stamped');
-                    const stampDiv = document.createElement('div');
-                    stampDiv.className = 'ex-stamp-box';
-                    let subTextStr = (record.value !== undefined && record.value !== '') ? `${record.value}${sport.unit}` : '';
-                    stampDiv.innerHTML = `<img src="${sport.icon}" alt="${sport.name}"><span class="ex-subtext">${subTextStr}</span>`;
-                    cell.appendChild(stampDiv);
-                }
-            }
-            grid.appendChild(cell);
-        }
-        updateExportTemplateStats(year, month, totalDays);
+        updateStats(year, month, totalDays);
     }
 
     function changeMonth(direction) {
@@ -772,9 +670,12 @@
         initCalendar();
     }
 
-    function updateWebStats(year, month, totalDays) {
-        let activeDays = 0, totalCount = 0, totalRunKm = 0;
+    function updateStats(year, month, totalDays) {
+        let activeDays = 0;
+        let totalCount = 0;
+        let totalRunKm = 0;
         let counts = {};
+
         for (let key in sportTypes) counts[key] = 0;
 
         for (let day = 1; day <= totalDays; day++) {
@@ -784,7 +685,10 @@
                 totalCount++;
                 const record = checkIns[dateKey];
                 counts[record.sport] = (counts[record.sport] || 0) + 1;
-                if (record.sport === 'run') totalRunKm += Number(record.value || 0);
+
+                if (record.sport === 'run') {
+                    totalRunKm += Number(record.value || 0);
+                }
             }
         }
 
@@ -800,57 +704,34 @@
 
         document.getElementById('goalDisplayText').innerText = `(目标: ${monthlyGoal} km)`;
         document.getElementById('runProgressText').innerText = `${totalRunKm.toFixed(1)} / ${monthlyGoal} km`;
+        
         const percent = Math.min(100, (totalRunKm / monthlyGoal) * 100).toFixed(1);
         document.getElementById('runProgressBar').style.width = `${percent}%`;
     }
 
-    function updateExportTemplateStats(year, month, totalDays) {
-        let activeDays = 0, totalCount = 0, totalRunKm = 0;
-        let counts = {};
-        for (let key in sportTypes) counts[key] = 0;
-
-        for (let day = 1; day <= totalDays; day++) {
-            const dateKey = `${year}-${month}-${day}`;
-            if (checkIns[dateKey]) {
-                activeDays++;
-                totalCount++;
-                const record = checkIns[dateKey];
-                counts[record.sport] = (counts[record.sport] || 0) + 1;
-                if (record.sport === 'run') totalRunKm += Number(record.value || 0);
-            }
-        }
-
-        const statsPanel = document.getElementById('exStatsPanel');
-        statsPanel.innerHTML = `
-            <div><div class="ex-stat-num">${activeDays}</div><div class="ex-stat-label">运动天数</div></div>
-            <div><div class="ex-stat-num">${totalCount}</div><div class="ex-stat-label">打卡次数</div></div>
-            <div><div class="ex-stat-num">${counts['run'] || 0}</div><div class="ex-stat-label">跑步</div></div>
-            <div><div class="ex-stat-num">${counts['dance'] || 0}</div><div class="ex-stat-label">舞蹈</div></div>
-            <div><div class="ex-stat-num">${counts['badminton'] || 0}</div><div class="ex-stat-label">羽毛球</div></div>
-            <div><div class="ex-stat-num">${counts['workout'] || 0}</div><div class="ex-stat-label">健身</div></div>
-        `;
-
-        document.getElementById('exGoalText').innerText = `(目标: ${monthlyGoal} km)`;
-        document.getElementById('exRunProgressText').innerText = `${totalRunKm.toFixed(1)} / ${monthlyGoal} km`;
-        const percent = Math.min(100, (totalRunKm / monthlyGoal) * 100).toFixed(1);
-        document.getElementById('exRunProgressBar').style.width = `${percent}%`;
-    }
-
-    // 核心：直接截取排版完美、专为手机端大字号设计的离屏海报模板
+    // 核心：带稳健容错的 html2canvas 导出，支持高清无损放大 3 倍
     function exportCardAsImage() {
-        const template = document.getElementById('exportTemplate');
+        const card = document.getElementById('captureCard');
+        const btnContainer = document.getElementById('shareBtnContainer');
+        
+        btnContainer.style.display = 'none';
 
-        html2canvas(template, {
-            scale: 2,
+        html2canvas(card, {
+            scale: 3,
             useCORS: true,
+            allowTaint: true,
             backgroundColor: null
         }).then(canvas => {
+            btnContainer.style.display = 'block';
+
             const link = document.createElement('a');
-            link.download = '人类丰荣计划-备战奥运打卡.png';
+            link.download = '人类丰荣计划-运动打卡.png';
             link.href = canvas.toDataURL('image/png');
             link.click();
         }).catch(err => {
-            console.error(err);
+            btnContainer.style.display = 'block';
+            console.error('导出图片失败:', err);
+            alert('生成图片时遇到了一点小问题，请刷新页面后重试。');
         });
     }
 
