@@ -61,32 +61,33 @@
             transition: all 0.3s ease;
         }
 
-        /* 顶部区域改为相对定位，方便右上角月份绝对定位 */
+        /* 顶部区域改为 Flex 左右布局：左侧标题左对齐，右侧月份靠右 */
         .header {
-            text-align: center;
-            position: relative;
-            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 5px;
+        }
+        .header-left {
+            text-align: left;
         }
         .header h1 {
-            font-size: 28px;
-            margin: 0 0 4px 0;
+            font-size: 26px;
+            margin: 0 0 2px 0;
             letter-spacing: 2px;
             color: var(--text-main);
             font-family: var(--cn-font);
             font-weight: normal;
         }
         .header p {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--text-secondary);
             margin: 0;
             font-weight: normal;
         }
 
-        /* 将月份切换模块移到右上角，大小与原图红圈装饰匹配 */
+        /* 右上角月份切换模块 */
         .month-nav {
-            position: absolute;
-            top: 0;
-            right: 0;
             display: flex;
             align-items: center;
             gap: 6px;
@@ -99,6 +100,7 @@
             padding: 4px 8px;
             border-radius: 20px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            flex-shrink: 0;
         }
         .month-nav button {
             background: none;
@@ -472,9 +474,11 @@
 
 <div class="container" id="captureCard">
     <div class="header">
-        <h1>「人类丰荣计划」</h1>
-        <p>/ 备战奥运</p>
-        <!-- 月份切换模块移至右上角 -->
+        <div class="header-left">
+            <h1>「人类丰荣计划」</h1>
+            <p>/ 备战奥运</p>
+        </div>
+        <!-- 月份切换模块（靠右对齐，与左侧标题错开不重叠） -->
         <div class="month-nav">
             <button onclick="changeMonth(-1)">‹</button>
             <span id="currentMonthYear">July 2026</span>
