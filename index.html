@@ -27,7 +27,8 @@
             --accent-color: #c88a59;
             --stamp-bg: #ffffff; 
             --day-font: 'Abel', sans-serif;
-            --cn-font: 'FuLuLingGanHeChaTi', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            /* 完美兼容：找不到艺术字体时自动平替为 Windows/Mac 自带的圆体或手写风格 */
+            --cn-font: 'FuLuLingGanHeChaTi', "YouSheBiaoTiHei", "Microsoft YaHei", sans-serif;
         }
 
         body {
@@ -269,7 +270,7 @@
             position: relative;
         }
         .progress-bar-fill {
-            background: linear-gradient(90deg, #c88a59, #e0a96d);
+            background: var(--accent-color);
             height: 100%;
             width: 0%;
             border-radius: 4px;
@@ -311,7 +312,7 @@
             opacity: 0.9;
         }
 
-        /* 右下角悬浮调色盘 */
+        /* 右下角悬浮多风格调色盘 */
         .palette-float {
             position: fixed;
             bottom: 25px;
@@ -468,15 +469,14 @@
     </div>
 </div>
 
-<!-- 右下角悬浮调色盘 -->
+<!-- 右下角悬浮多风格调色盘 -->
 <div class="palette-float" id="paletteFloat">
-    <span>🎨 主题</span>
-    <div class="color-dot" style="background: #f7f5f0;" onclick="setTheme('#f7f5f0', '#ffffff', '#3d332a', '#8c7d73', '#eae3dc', '#faf8f5', '#c88a59', '#ffffff')" title="暖白米色"></div>
-    <div class="color-dot" style="background: #f0f4f1;" onclick="setTheme('#f0f4f1', '#ffffff', '#2d3830', '#738378', '#d5e0d7', '#f6f9f6', '#50725b', '#ffffff')" title="森系复古绿"></div>
-    <div class="color-dot" style="background: #fcf4f1;" onclick="setTheme('#fcf4f1', '#ffffff', '#40302b', '#967d75', '#f0ded8', '#fff8f6', '#b86b5e', '#ffffff')" title="暖调杏粉色"></div>
-    <div class="color-dot" style="background: #f1f4f7;" onclick="setTheme('#f1f4f7', '#ffffff', '#2c353f', '#758393', '#d9e2ec', '#f6f9fc', '#4a709c', '#ffffff')" title="清晨雾霾蓝"></div>
-    <div class="color-dot" style="background: #f4f2ee;" onclick="setTheme('#f4f2ee', '#ffffff', '#38332e', '#8a8279', '#e3ded7', '#faf8f6', '#8c6d53', '#ffffff')" title="高级燕麦色"></div>
-    <div class="color-dot" style="background: #e8e4dc;" onclick="setTheme('#e8e4dc', '#f7f4ee', '#3d3630', '#82786e', '#d4ce3c', '#ede9e2', '#a66a3d', '#ffffff')" title="柔和暖灰"></div>
+    <span>🎨 风格</span>
+    <div class="color-dot" style="background: #f7f5f0;" onclick="setTheme('#f7f5f0', '#ffffff', '#3d332a', '#8c7d73', '#eae3dc', '#faf8f5', '#c88a59', '#ffffff')" title="原版·暖白米色"></div>
+    <div class="color-dot" style="background: #edf2ee;" onclick="setTheme('#edf2ee', '#ffffff', '#2c3832', '#708277', '#d3dec9', '#f4f7f4', '#557a62', '#ffffff')" title="森系·抹茶绿"></div>
+    <div class="color-dot" style="background: #fcf3f0;" onclick="setTheme('#fcf3f0', '#ffffff', '#402e2b', '#967770', '#f0ded8', '#fff8f6', '#b86b5e', '#ffffff')" title="温柔·落日粉"></div>
+    <div class="color-dot" style="background: #f0f4f8;" onclick="setTheme('#f0f4f8', '#ffffff', '#2a3440', '#728294', '#d4dfec', '#f6f9fc', '#4a709c', '#ffffff')" title="清晨·雾霾蓝"></div>
+    <div class="color-dot" style="background: #eef1f5;" onclick="setTheme('#eef1f5', '#ffffff', '#333b48', '#7c8798', '#dce2ec', '#f5f7fa', '#59749c', '#ffffff')" title="高级·暖银灰"></div>
 </div>
 
 <!-- 选择运动弹窗 -->
@@ -769,16 +769,21 @@
         document.getElementById('runProgressBar').style.width = `${percent}%`;
     }
 
-    /* 终极修复版：通过克隆并强制锁死样式来生成绝对完美的截图 */
-    function exportHighResImage() {
+    /* 终极高清截图：强制等待浏览器完全渲染并加载完字体后再生成 */
+    async function exportHighResImage() {
+        // 确保字体完全就绪
+        if (document.fonts && document.fonts.ready) {
+            await document.fonts.ready;
+        }
+
         const card = document.getElementById('captureCard');
         
         html2canvas(card, {
             scale: 3,
             useCORS: true,
             backgroundColor: null,
+            logging: false,
             onclone: (clonedDoc) => {
-                // 强制让克隆出的卡片保持和网页上一模一样的精确尺寸，防止被大屏幕撑开
                 const clonedCard = clonedDoc.getElementById('captureCard');
                 if (clonedCard) {
                     clonedCard.style.width = '500px';
