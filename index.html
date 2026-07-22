@@ -8,14 +8,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
     <style>
         /* ==========================================================
-           1. 声明并引入中文字体：ChenYuluoyan-2.0-Thin
-           注意：请确保 ChenYuluoyan-2.0-Thin.ttf 文件与此 HTML 
-           文件放在 GitHub 仓库的同一个文件夹（根目录）下。
+           1. 声明并引入中文字体：FuLuLingGanHeChaTi-2.ttf
+           注意：请确保该字体文件与此 HTML 文件放在 GitHub 
+           仓库的同一个文件夹（根目录）下。
            ========================================================== */
         @font-face {
-            font-family: 'ChenYuluoyan';
-            src: url('./ChenYuluoyan-2.0-Thin.ttf') format('truetype');
-            font-weight: 300;
+            font-family: 'FuLuLingGanHeChaTi';
+            src: url('./FuLuLingGanHeChaTi-2.ttf') format('truetype');
+            font-weight: normal;
             font-style: normal;
             font-display: swap;
         }
@@ -30,8 +30,8 @@
             --accent-color: #c88a59;
             --stamp-bg: #ffffff; 
             --day-font: 'Abel', sans-serif;
-            /* 将落雁体设为首选中文字体，并加入通用兜底字体 */
-            --cn-font: 'ChenYuluoyan', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            /* 将福禄灵感和茶体设为首选中文字体，并加入通用兜底字体 */
+            --cn-font: 'FuLuLingGanHeChaTi', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
@@ -68,7 +68,7 @@
             text-align: center;
         }
         .header h1 {
-            font-size: 32px; /* 落雁体字重较细，适当调大字号更美观 */
+            font-size: 28px;
             margin: 0 0 4px 0;
             letter-spacing: 2px;
             color: var(--text-main);
@@ -76,7 +76,7 @@
             font-weight: normal;
         }
         .header p {
-            font-size: 16px;
+            font-size: 15px;
             color: var(--text-secondary);
             margin: 0;
             font-weight: normal;
