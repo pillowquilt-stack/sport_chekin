@@ -137,16 +137,18 @@
             transform: none;
         }
 
+        /* 日期数字：优化定位与防重叠，针对两位数自动调整 */
         .day-number {
             position: absolute;
-            top: 4px;
-            right: 6px;
+            top: 5px;
+            right: 7px;
             font-family: var(--day-font);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             color: var(--text-secondary);
             z-index: 30;
             pointer-events: none;
+            letter-spacing: -0.5px;
         }
 
         .day-cell.stamp-stamped {
@@ -166,8 +168,8 @@
             z-index: 5;
         }
         .stamp-content img {
-            width: 85%;
-            height: 85%;
+            width: 82%;
+            height: 82%;
             object-fit: contain;
         }
         .stamp-subtext {
@@ -246,7 +248,7 @@
             transition: width 0.4s ease;
         }
 
-        /* 左上角极简的“海报模式”触发小按钮 */
+        /* 左上角海报模式入口 */
         .poster-mode-trigger {
             position: fixed;
             top: 25px;
@@ -510,13 +512,13 @@
 
 <script>
     const sportTypes = {
-        'run': { name: '跑步', icon: 'run.png?v=31', unit: 'km', type: 'distance' },
-        'dance': { name: '跳舞', icon: 'dance.png?v=31', unit: 'min', type: 'duration' },
-        'badminton': { name: '羽毛球', icon: 'badminton.png?v=31', unit: 'min', type: 'duration' },
-        'workout': { name: '健身', icon: 'workout.png?v=31', unit: 'min', type: 'duration' },
-        'yoga': { name: '瑜伽', icon: 'yoga.png?v=31', unit: 'min', type: 'duration' },
-        'bike': { name: '骑车', icon: 'bike.png?v=31', unit: 'km', type: 'distance' },
-        'swim': { name: '游泳', icon: 'swim.png?v=31', unit: 'min', type: 'duration' }
+        'run': { name: '跑步', icon: 'run.png?v=32', unit: 'km', type: 'distance' },
+        'dance': { name: '跳舞', icon: 'dance.png?v=32', unit: 'min', type: 'duration' },
+        'badminton': { name: '羽毛球', icon: 'badminton.png?v=32', unit: 'min', type: 'duration' },
+        'workout': { name: '健身', icon: 'workout.png?v=32', unit: 'min', type: 'duration' },
+        'yoga': { name: '瑜伽', icon: 'yoga.png?v=32', unit: 'min', type: 'duration' },
+        'bike': { name: '骑车', icon: 'bike.png?v=32', unit: 'km', type: 'distance' },
+        'swim': { name: '游泳', icon: 'swim.png?v=32', unit: 'min', type: 'duration' }
     };
 
     let currentDate = new Date(); 
